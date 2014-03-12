@@ -1,17 +1,14 @@
-@* category Template File *@
-@(message: String)
 
-<!DOCTYPE html>
-<html><head>
-	<meta charset="utf-8">
-	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
-	<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
-	<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
-	<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-	<link rel="stylesheet" href="@routes.Assets.at("project.css")">
-</head><body>
-	<div class="category">
-		<h1> Category </h1>
-	</div>
+@()
 
-</body></html>
+@index("Category") {
+
+	<ul>
+		
+			<li><a href="http://localhost:9000/listallcategory"</a>List all category </li>
+			<li><a href="http://localhost:9000/show-one-category/1"</a>List one category </li>
+	
+	</ul>
+}
+
+

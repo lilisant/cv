@@ -3,10 +3,16 @@
 # ~~~~
 
 # Home page
-GET     /                           controllers.Application.index()
-GET     /product                           controllers.Product.product()
+GET     /                           		controllers.Application.index()
+GET     /product                        	controllers.Product.product()
+GET     /show-one-product/:id				controllers.Product.showOneProduct(id : Int)
+GET     /list-all-products					controllers.Product.listAllProducts()
+
 GET     /category                           controllers.Category.category()
-GET     /order                           controllers.Order.order()
+GET     /show-one-category/:id				controllers.Category.showOneCategory(id : Int)
+GET     /listallcategory           			controllers.Category.listAllCategory()
+
+GET     /order                           	controllers.Order.order()
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)

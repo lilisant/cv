@@ -1,0 +1,7 @@
+@* showonecategory Template File *@
+@(category: models.Category)
+
+@index("Showing categories") {
+	Category name: @category.getName().<br>
+	Id: @category.getid()
+}
