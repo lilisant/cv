@@ -18,7 +18,6 @@ public class Application extends Controller {
 		List<String> list = new ArrayList<String>();
 		list.add("category");
 		list.add("product");	
-		list.add("user");
 
 		return ok(first.render(list));
 	}

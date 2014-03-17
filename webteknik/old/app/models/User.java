@@ -1,12 +1,6 @@
 package models;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-
-@Entity
 public class User {
-	
-	@Id
 	private int userid;
     private String firstname;
     private String surname;
@@ -17,9 +11,8 @@ public class User {
     private String email;
     private String password;
  
-    public User(int userid, String firstname, String surname, String street_adress, String town, String postcode, String mobile, String email, String password) {
-        this.userid = userid;
-    	this.firstname = firstname;
+    public User(String firstname, String surname, String street_adress, String town, String postcode, String mobile, String email, String password) {
+        this.firstname = firstname;
         this.surname = surname;
         this.street_adress = street_adress;
         this.town = town;

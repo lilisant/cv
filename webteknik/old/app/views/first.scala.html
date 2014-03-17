@@ -1,0 +1,10 @@
+@* first Template File *@
+@(parameter: List[String])
+@index("Application") {
+
+	<ul>
+		@for(param <- parameter){
+			<li><a href="@param">@param</a></li>
+		}
+	</ul>
+}
