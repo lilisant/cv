@@ -1,0 +1,12 @@
+
+@(products: List[models.Product])
+
+@index("Welcome to Play.") {
+	<h1>List of products (@products.size).</h1>
+
+	<ul>
+		@for(product <- products){
+			<li><a href="/product/@product.getName()"> @product.getName()</a></li>
+		}
+	</ul>
+}

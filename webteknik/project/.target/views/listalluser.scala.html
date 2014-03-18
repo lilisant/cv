@@ -1,0 +1,13 @@
+@* listalluser Template File *@
+
+@(users: List[models.User])
+
+@index("Welcome to Play.") {
+	<h1>List of Users (@users.size).</h1>
+
+	<ul>
+		@for(user <- users){
+			<li><a href="/user/@user.getFirstname()"> @user.getFirstname()</a></li>
+		}
+	</ul>
+}
