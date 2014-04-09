@@ -1,12 +1,17 @@
 package models;
 
+import java.util.List;
+
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class User {
 	
 	@Id
+	@GeneratedValue
 	private int userid;
     private String firstname;
     private String surname;
@@ -16,7 +21,32 @@ public class User {
     private String mobile;
     private String email;
     private String password;
+    
+    
+    @OneToMany(mappedBy = "user")
+	private List<Cart> carts;
+    
+    public List<Cart> getCarts() {
+		return carts;
+	}
+	public void setCarts(List<Cart> carts) {
+		this.carts = carts;
+	}
+	public User() {
  
+    }
+    public User(String firstname, String surname, String street_adress, String town, String postcode, String mobile, String email, String password) {
+
+    	this.firstname = firstname;
+        this.surname = surname;
+        this.street_adress = street_adress;
+        this.town = town;
+        this.postcode = postcode;
+        this.mobile = mobile;
+        this.email = email;
+        this.password = password;
+ 
+    }
     public User(int userid, String firstname, String surname, String street_adress, String town, String postcode, String mobile, String email, String password) {
         this.userid = userid;
     	this.firstname = firstname;

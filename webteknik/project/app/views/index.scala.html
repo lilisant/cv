@@ -6,19 +6,47 @@
 	<meta charset="utf-8">
 	<title>@title</title>
 	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+	<link rel="stylesheet" href="http://localhost:9000/assets/project.css">
 	<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
 	<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 	<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+	<style>
+		body{
+			background:url(http://www.hdwallpapersci.com/wp-content/uploads/2014/02/HD-Pink-Wallpaper.jpg);
+			font-size: 20px;
+		}
+		* form{
+		 	width: 30%;
+		 	font-size: 20px;
+		 	color gren;
+		 }
+		* input::-webkit-input-placeholder {
+		    color:    red;
+		    font-weight: bold;
+		}
+		* input:-moz-placeholder {
+		    color:    red;
+		    font-weight: bold;
+		}
+
+	</style>
 </head><body>
 	@topmenu()
+	@if(flash.containsKey("cart-empty")){
+	<div class="alert alert-warning">Cart Empty.</div>
+}
 	<div class="container">
 		<div class="row">
 			<div class="col-xs-8">
 				@content
 			</div>
 			<div class="col-xs-4">
-				<h2>Right menu</h2>
+				<h2></h2>
 			</div>
 		</div>
 	</div>
+	
+
+ 
+	
 </body></html>

@@ -1,0 +1,27 @@
+@* newcategory Template File *@
+@(categories: List[models.Category])
+
+@index("Welcome to Play.") {
+<p>Categories (@categories.size).</p>
+<ul>
+	@for(category <- categories){
+		<li>@category.getName()  </li>
+	}
+</ul>
+
+<form action="/categories/create" method="post" role="form">
+    <label for="category-name">Category name</label>
+    <div class="input-group"> 
+      <input type="text" class="form-control" id="category-name"  name="name">
+      <span class="input-group-btn">
+        <button type="submit" class="btn btn-default"><i class = "glyphicon glyphicon-send"></i></button>
+      </span>
+    </div><!-- /input-group -->
+</form>
+</br>
+<a href="/categories" class = "btn btn-default" id="knap">Back</a> 
+}
+
+
+
+

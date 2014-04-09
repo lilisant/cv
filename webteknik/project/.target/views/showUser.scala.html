@@ -1,7 +1,30 @@
 @* showuser Template File *@
 @(user: models.User)
-<h1>Details for user</h1>
+@index("Welcome to Play.") {
+
+<p>Details for user</p>
 
 <ul>
-<li>Name: @user.getFirstname()</li>
+		<table>
+			<tr>
+				<td>Firstname:</td>
+				<td> &nbsp;&nbsp; </td>
+				<td>@user.getFirstname()</td>
+				<td> &nbsp;&nbsp; </td>							
+			</tr>
+			<tr>
+				<td>Surname:</td>
+				<td> &nbsp;&nbsp; </td>
+				<td>@user.getSurname()</td>
+				<td> &nbsp;&nbsp; </td>							
+			</tr>	
+			<tr>
+				<td>email:</td>
+				<td> &nbsp;&nbsp; </td>
+				<td>@user.getEmail()</td>
+				<td> &nbsp;&nbsp; </td>							
+			</tr>		
+		</table>
 </ul>
+<a href="/" class = "btn btn-default" id="knap">Back</a>
+}

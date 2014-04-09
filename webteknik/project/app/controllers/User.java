@@ -1,44 +1,56 @@
 package controllers;
 
-import java.util.ArrayList;
 import java.util.List;
-
-import com.avaje.ebean.Ebean;
-
-import play.*;
+import java.util.Map;
+import play.db.jpa.JPA;
+import play.db.jpa.Transactional;
 import play.mvc.*;
 import views.html.*;
 
 public class User extends Controller {
-
-    public static Result user() {
-    	/////// new ...
-    	
-    	//List<User> users = Ebean.find(User.class).findList();
-    	
-        return ok(user.render());
-    }
 	
-	public static Result createSomeUsers(){
-		models.User user = new models.User(1, "tati", "Sant", "address" , "town", "postcode", "mobile", "email", "password");
-		
-		Ebean.save(user);
-
-		return ok("Users created");
-	}
-	
-	public static Result showUser(int id){
-		models.User user = Ebean.find(models.User.class, id);
-    	
-		return ok(showUser.render(user));
-    }
-	public static Result listAllUsers(){
-//		List<models.User> users = askDatabaseForAllUsers();
-//
-//		return ok(listalluser.render(users));
-		List<models.User> users = Ebean.find(models.User.class).findList();
-    	
-        return ok(listalluser.render(users));
-	}
-
+	    @Transactional
+		public static Result newUser(){    	
+		    	Map<String, String[]> form = request().body().asFormUrlEncoded();
+				
+				String email = form.get("email")[0];
+				String passwd = form.get("password")[0];
+				
+				boolean usernameIsEmpty = "".equals(email);
+				boolean passwordIsEmpty = "".equals(passwd);
+				if(usernameIsEmpty || passwordIsEmpty){
+						if(usernameIsEmpty){
+								flash().put("email-empty", "yes");
+						}
+						if(passwordIsEmpty){
+								flash().put("password-empty", "yes");
+						}
+			    		return redirect(routes.User.showUserForm());
+				}	    	
+				models.User user = new models.User();
+				user.setFirstname(form.get("firstname")[0]);
+				user.setSurname(form.get("surname")[0]);
+				user.setEmail(email);
+				user.setPassword(passwd);
+				JPA.em().persist(user);
+				return redirect(routes.User.listAllUsers());	    	
+		}
+	    
+		@Transactional
+		public static Result showUserForm(){
+				List<models.User> users = JPA.em().createQuery("SELECT a from User AS a", models.User.class).getResultList();
+				return ok(newuser.render(users));
+		}
+						
+	    @Transactional
+		public static Result showUser(int id){
+				models.User user = JPA.em().find(models.User.class, id);	
+				return ok(showUser.render(user));
+	    }
+	        
+	    @Transactional
+		public static Result listAllUsers(){
+				List<models.User> users = JPA.em().createQuery("SELECT a FROM User a", models.User.class).getResultList();
+				return ok(listalluser.render(users));
+		}	
 }

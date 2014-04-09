@@ -1,7 +1,31 @@
 @* showcategory Template File *@
 @(category: models.Category)
-<h1>Details for user</h1>
+@index("Welcome to Play.") {
+<p>Details for Category</p>
 
 <ul>
-<li>Name: @category.getName()</li>
+<li>Category Name: @category.getName()</li>
+			<p> Products: 		 </br>							
+				<ul>
+					<table>
+						<tr>
+							<td><u>Description</u></td>
+							<td> &nbsp;&nbsp; </td>
+							<td><u>Price</u></td>							
+						</tr>
+						@for(product <- category.getProductsCategory()){
+							<tr>
+								<td><a href="/showProduct/@product.getId()">@product.getName()</td>
+								<td>&nbsp;&nbsp; </td>
+								<td>@product.getPrice()</td>							
+							</tr>
+
+					    }
+
+					</table>
+				</ul>							
+			</p>
 </ul>
+<a href="/categories" class = "btn btn-default" id="knap">Back</a> <br/>
+}
+

@@ -3,11 +3,15 @@
 @(users: List[models.User])
 
 @index("Welcome to Play.") {
-	<h1>List of Users (@users.size).</h1>
+	<p>List of Users (@users.size).</p>
 
 	<ul>
 		@for(user <- users){
-			<li><a href="/user/@user.getFirstname()"> @user.getFirstname()</a></li>
+			<li><a href="/showUser/@user.getUserid()"> @user.getFirstname()</a></li>
 		}
 	</ul>
+	<a href="/" class = "btn btn-default" id="knap">Back</a> 
+	<a href="/users/create" class = "btn btn-default" id="knap">Create New User</a>
 }
+
+

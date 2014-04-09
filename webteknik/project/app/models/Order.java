@@ -1,26 +1,38 @@
 package models;
 
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+@Entity 
+@Table(name="Orders")
 public class Order {
+	@Id
+	@GeneratedValue
 	private int orderId;
-	private int userid;
+	@ManyToOne
+	private User user;
 	private Date dateOrder;
 	
-	public Order(int orderId, int userid, Date dateOrder){
+	@OneToMany(mappedBy = "order")
+	private List<ProductsInOrder> productsOrder;
+	
+	public Order(){
+
+	}
+	public Order(int orderId, User user, Date dateOrder){
 		this.setOrderId(orderId);
-		this.setUserid(userid);
+		this.setUser(user);
 		this.setDateOrder(dateOrder);
 		
 	}
 
-	public int getUserid() {
-		return userid;
-	}
-
-	public void setUserid(int userid) {
-		this.userid = userid;
-	}
 
 	public Date getDateOrder() {
 		return dateOrder;
@@ -36,6 +48,20 @@ public class Order {
 
 	public void setOrderId(int orderId) {
 		this.orderId = orderId;
+	}
+	
+	public void setOrdersProd(List<ProductsInOrder> productsOrder) 
+	{
+	        this.productsOrder = productsOrder;
+	    }
+	public List<ProductsInOrder> getOrdersProd() {
+		return productsOrder;
+	}
+	public User getUser() {
+		return user;
+	}
+	public void setUser(User user) {
+		this.user = user;
 	}
 	
 }

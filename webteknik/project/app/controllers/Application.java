@@ -2,8 +2,6 @@ package controllers;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import play.*;
 import play.mvc.*;
 import views.html.*;
 
@@ -14,12 +12,15 @@ public class Application extends Controller {
 //    }
 	
 	public static Result index(){
-		
+//		flash().put("username-login", "no");
 		List<String> list = new ArrayList<String>();
-		list.add("category");
-		list.add("product");	
-		list.add("user");
+		list.add("categories");
+		list.add("products");	
+		list.add("users");
+		list.add("cart");
+		list.add("orders");
 
 		return ok(first.render(list));
 	}
+	
 }
