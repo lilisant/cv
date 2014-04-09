@@ -1,0 +1,27 @@
+@* newproduct Template File *@
+@(products: List[models.Product], categories: List[models.Category])
+
+@index("Welcome to Play.") {
+<form action="/products/create" method="post" role="form">
+
+		<fieldset>
+  			<legend>Create Product</legend>
+  			<div class="form-group">   
+    			Product Name: <input type="text" class="form-control" id="product-name" name="name">  
+    			Product Price: <input type="number" class="form-control" id="product-price" name="price">
+    			Product Stock: <input type="number" class="form-control" id="product-stock" name="stock">
+   				 <label for="category-name">Categories</label>
+       			 <br />
+   
+    			@for(category <- categories) {
+   	    			<input type="checkbox" name="category-id" value="@category.getid()"  >@category.getName() </input><br />
+   				}  
+  			</div>
+ 		</fieldset> 
+  		<button type="submit" class="btn btn-default"><i class = "glyphicon glyphicon-send"></i></button>
+</form>
+
+</br>
+<a href="/products" class = "btn btn-default" id = "knap" id="knap">Back</a>
+}
+

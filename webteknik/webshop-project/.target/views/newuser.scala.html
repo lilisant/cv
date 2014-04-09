@@ -1,0 +1,49 @@
+@* newuser Template File *@
+@(users: List[models.User])
+@if(flash.containsKey("email-error")){
+	<div class="alert alert-warning">Email error.</div>
+}
+@if(flash.containsKey("username-empty")){
+	<div class="alert alert-warning">Email required.</div>
+}
+ 
+@if(flash.containsKey("password-empty")){
+	<div class="alert alert-warning">Password required.</div>
+}
+
+
+@index("Welcome to Play.") {
+<p>Categories (@users.size).</p>
+<ul>
+	@for(user <- users){
+		<li>@user.getFirstname()  </li>
+	}
+</ul>
+
+<form action="/users/create" method="post" role="form">
+<fieldset>
+  <legend>Create User</legend>
+  <div class="form-group">
+    
+    First name: <input type="text" class="form-control" id="user-firstname" name="firstname">
+  </div>
+  <div class="form-group">
+   
+    Surname: <input type="text" class="form-control" id="user-surname" name="surname">
+  </div>
+  <div class="form-group">
+   
+    Email: <input type="email" class="form-control" id="user-email" name="email">
+  </div>
+  <div class="form-group">
+   
+    Password: <input type="password" class="form-control" id="user-surname" name="password">
+   
+  </div>
+ </fieldset> 
+  <button type="submit" class="btn btn-default"><i class = "glyphicon glyphicon-send"></i></button>
+
+</form>
+</br>
+<a href="/users" class = "btn btn-default" id = "knap" id="knap">Back</a>
+}

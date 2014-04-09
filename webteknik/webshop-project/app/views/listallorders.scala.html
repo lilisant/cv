@@ -1,0 +1,33 @@
+@* listallorders Template File *@
+@(orders: List[models.Order])
+
+@index("Welcome to Play.") {
+	<p>List of orders (@orders.size).</p>
+
+	<ul>  
+		<table class="table"">
+			<tr>
+				<td><u>Order No.</u></td>
+				<td> &nbsp;&nbsp; </td>
+				<td ALIGN=right><u>User</u></td>
+				<td> &nbsp;&nbsp; </td>
+				<td ALIGN=right><u>Date</u></td>
+				<td> &nbsp;&nbsp; </td>										
+			</tr>
+			@for(order <- orders){
+				
+				<tr>
+					<td><a href="/showorder/@order.getOrderId()">@order.getOrderId()</a></td>
+					<td>&nbsp;&nbsp; </td>
+					<td ALIGN=right>@order.getUser.getFirstname()</td>
+					<td> &nbsp;&nbsp; </td>
+					<td ALIGN=right>@order.getDateOrder().format("dd/MM/yyyy")</td>
+					<td> &nbsp;&nbsp; </td>											
+				</tr>
+								
+				}
+		</table>
+	</ul>
+
+	<a href="/" class = "btn btn-default" id="knap">Back</a> <br/>
+}

@@ -1,0 +1,82 @@
+@(message: String)
+ 
+@main("Welcome to Play") {
+ 
+    <ul id="users"></ul>
+    
+    <hr>
+    
+    <button id="create-new-user">Create new</button>
+    
+    <script>
+    	function loadListOfUsers(){
+			$('#users').empty();
+        	
+			$.get('/users', function(users){
+				$.each(users, function(arrayIndex, user){
+					$('<li>')
+					.append(user.surname)
+					.append(', ')
+					.append(user.firstname)
+					.append(' (')
+					.append(user.userid)
+					.append(')')
+					.append(' ')
+					.append(
+						$('<button>')
+						.text('GET')
+						.click(function(){
+							location.href = "/users/" + user.userid;
+						})
+					)
+					.append(' ')
+					.append(
+						$('<button>')
+						.text('Delete')
+						.click(function(){
+							$.ajax({
+								url: '/users/' + user.userid,
+								type: 'DELETE'
+							})
+							.always(function(){
+								loadListOfUsers();
+							});
+						})
+					)
+					.append(' ')
+					.append(
+						$('<button>')
+						.text('Update')
+						.click(function(){
+							$.ajax({
+								url: '/users/' + user.userid,
+								type: 'PUT',
+								data: {
+									firstname: prompt("User name please?", user.firstname),
+									surname: prompt("User surname please?", user.surname)
+								}
+							})
+							.always(loadListOfUsers);
+						})
+					)
+					.appendTo('#users');
+				});
+			});
+    	}
+ 
+    	$(loadListOfUsers);
+    	
+		$('#create-new-user').click(function(){
+			$.ajax({
+				url: '/users',
+				type: 'PUT',
+				data: {
+					firstname: prompt("User name please?"),
+					surname: prompt("User surname please?")
+				}
+			})
+			.always(loadListOfUsers);
+		});
+    </script>
+ 
+}

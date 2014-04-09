@@ -1,0 +1,40 @@
+@(product: models.Product)
+@index("Welcome to Play.") {
+
+<fieldset>
+<legend>Details for product</legend>
+<ul>
+@if(product == null){
+	Not found
+	
+}else{
+			<li> Product-Id:  @product.getId()</li>
+			<p> Description: 	@product.getName()  </br>
+				Price:			@product.getPrice() </br>
+				Category: 		 </br>
+							
+				<ul>
+					@for(category <- product.getCategoriesProd()){
+						<li> @category.getName()</li>
+					}
+				</ul>
+							
+			</p>
+</br>
+<form action="/add-cart" method="post" role="form">
+	<label for="product-qty">Quantity</label>
+    <div class="input-group">
+    
+      <input type="number" class="form-control" id="product-qty" name="qty">
+      <input type="hidden" name="product-id"  value="@product.getId()">
+      <span class="input-group-btn">
+        <button class="btn btn-default" type="submit">Add cart</button>
+      </span>
+    </div><!-- /input-group -->
+</form>
+}
+
+</ul>
+</fieldset>
+<a href="/products" class = "btn btn-default" id="knap">Back</a>
+}

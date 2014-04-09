@@ -1,0 +1,45 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Home page
+GET     /                           		controllers.Application.index()
+
+POST    /myAuthentication					controllers.MyAuthentication.loginUser()
+GET     /myAuthentication                  	controllers.MyAuthentication.showLoginForm()
+POST    /myAuthenticationOut				controllers.MyAuthentication.logOut()
+
+
+GET     /products                        	controllers.Product.listAllProducts()
+POST    /products/create             		controllers.Product.newProduct()
+GET     /products/create					controllers.Product.showProductForm()
+GET     /showProduct/:id					controllers.Product.showProduct(id : Int)
+
+
+GET 	/cart								controllers.Cart.showCardForm()
+POST 	/add-cart							controllers.Cart.addProductToCart()
+POST    /change-cart             			controllers.Cart.changeCart()
+GET     /listAllCart           				controllers.Cart.listAllCart()
+
+
+GET     /categories                         controllers.Category.listAllCategory()
+POST    /categories/create					controllers.Category.newCategory()
+GET     /categories/create					controllers.Category.showCategoryForm()
+GET     /showCategories/:id					controllers.Category.showCategory(id : Int)
+
+
+GET     /orders                           	controllers.Order.listAllOrders()
+POST 	/orders/create						controllers.Order.newOrder()
+GET     /orders/create						controllers.Order.showOrderForm()
+GET     /showorder/:id						controllers.Order.showOrder(id : Int)
+
+GET     /users                        		controllers.User.listAllUsers()
+POST    /users/create						controllers.User.newUser()
+GET     /users/create						controllers.User.showUserForm()
+GET     /showUser/:id						controllers.User.showUser(id : Int)
+
+
+
+
+# Map static resources from the /public folder to the /assets URL path
+GET     /assets/*file               controllers.Assets.at(path="/public", file)

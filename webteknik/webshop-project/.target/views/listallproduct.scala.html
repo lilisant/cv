@@ -1,0 +1,43 @@
+
+@(products: List[models.Product])
+
+@index("Welcome to Play.") {
+	  
+	<div class="panel panel-success">
+	<p>List of products (@products.size).</p>
+
+	<ul>  
+		<table class="table"">
+			<tr>
+				<td><u>Description</u></td>
+				<td> &nbsp;&nbsp; </td>
+				<td ALIGN=right><u>Price</u></td>
+				<td> &nbsp;&nbsp; </td>
+				<td ALIGN=right><u>Stock</u></td>
+				<td> &nbsp;&nbsp; </td>
+				
+				<td><u>Categories</u></td>	
+							
+			</tr>
+			@for(product <- products){
+				<tr>
+					<td><a href="/showProduct/@product.getId()">@product.getName()</a></td>
+					<td>&nbsp;&nbsp; </td>
+					<td ALIGN=right>@product.getPrice()</td>
+					<td> &nbsp;&nbsp; </td>
+					<td ALIGN=right>@product.getStock()</td>
+					<td> &nbsp;&nbsp; </td>
+					@for(category <- product.getCategoriesProd()){
+						<td>@category.getName() &nbsp;</td>
+					}							
+				</tr>
+								
+				}
+		</table>
+	</ul>
+	</div>
+	<a href="/" class = "btn btn-default" id="knap">Back</a>
+	<a href="/products/create" class = "btn btn-default" id="knap">Create New Product</a>
+	<a href="/cart" class = "btn btn-default" id="knap">Show Cart</a>
+ 
+}

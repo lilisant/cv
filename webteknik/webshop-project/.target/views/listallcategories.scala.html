@@ -1,0 +1,25 @@
+@* listallcategories Template File *@
+
+@(categories: List[models.Category])
+
+@index("Welcome to Play.") {
+	<div class="panel panel-success">
+	<p>List of category (@categories.size).</p>
+	<table class="table"">
+			<tr>
+				<td><u>Description</u></td>
+				<td> &nbsp;&nbsp; </td>
+			</tr>
+	
+			@for(category <- categories){
+				<tr>
+					<td><a href="/showCategories/@category.getid()"> @category.getName()</a></td>
+					<td>&nbsp;&nbsp; </td>
+				</tr>
+			}
+	</table>
+	</div>
+	<a href="/" class = "btn btn-default" id="knap">Back</a> 
+	<a href="/categories/create" class = "btn btn-default" id="knap">Create New Category</a>
+	 
+}

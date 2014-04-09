@@ -1,0 +1,38 @@
+@* listallcart Template File *@
+@(carts: List[models.Cart])
+
+@index("Welcome to Play.") {
+	<p>List of carts (@carts.size).</p>
+
+	<ul>
+
+		@for(cart <- carts){
+			<li> Cart-Id:  @cart.getId()</li>
+			<p> user: 	@cart.getUser.getFirstname()  </br>
+				Products: 		 </br>
+							
+				<ul>
+					<table>
+						<tr>
+								<td><u>Description</u></td>
+								<td> &nbsp;&nbsp; </td>
+								<td ALIGN=right><u>Quantity</u></td>										
+						</tr>
+						@for(productQuantity <- cart.getProductQuantities()){		
+							<tr>
+								<td>@productQuantity.getProduct().getName()</td>
+								<td>&nbsp;&nbsp; </td>
+								<td ALIGN=right>@productQuantity.getQty()</td>						
+							</tr>				
+						
+						}
+					</table>
+				</ul>
+							
+			</p>
+		
+		}
+	
+	</ul>
+	<a href="/cart" class = "btn btn-default" id="knap">Back</a> <br/>
+}

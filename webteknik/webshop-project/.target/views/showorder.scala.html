@@ -1,0 +1,61 @@
+@* showorder Template File *@
+@(order: models.Order)
+@index("Welcome to Play.") {
+
+<fieldset>
+<legend>Details for order </legend>
+<ul>
+@if(order == null){
+	Not found
+	
+}else{			 
+			<p> 			
+					Order-No: &nbsp; @order.getOrderId() </br>
+					User: 	 &nbsp; @order.getUser.getFirstname() </br>
+					Date: @order.getDateOrder().format("dd/MM/yyyy")
+		
+					</br>
+						Products: 		 </br>
+									
+						<ul>
+							<table class="table"">
+								<tr>
+										<td><u>Description</u></td>
+										<td> &nbsp;&nbsp; </td>
+										<td ALIGN=right><u>Price</u></td>
+										<td> &nbsp;&nbsp; </td>
+										<td ALIGN=right><u>Quantity</u></td>	
+										<td> &nbsp;&nbsp; </td>
+										<td ALIGN=right><u>Price Total</u></td>	
+																			
+																				
+								</tr>
+								@for(productsOrder <- order.getOrdersProd()){		
+									<tr>
+										<td>@productsOrder.getProduct().getName()</td>
+										<td>&nbsp;&nbsp; </td>
+										<td ALIGN=right>@productsOrder.getProduct().getPrice() </td>	
+										<td>&nbsp;&nbsp; </td>
+										<td ALIGN=right>@productsOrder.getQty()</td>	
+										<td>&nbsp;&nbsp; </td>					
+										<td ALIGN=right>@(productsOrder.getQty() * productsOrder.getProduct().getPrice()) </td>	
+															
+									</tr>				
+								
+								}
+							</table>
+						</ul>
+									
+			</p>
+
+</br>
+
+}
+
+</ul>
+</fieldset>
+<a href="/orders" class = "btn btn-default" id="knap">Back</a>
+}
+
+
+
